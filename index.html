@@ -3,53 +3,50 @@
 <head>
   <meta charset='utf-8'>
 
-  <title>SilverStripe Shop Module</title>
-  <META NAME="Description" CONTENT="Ecommerce shopping cart framework for you SilverStripe website.">
+  <title>SilverStripe Shop</title>
+  <META NAME="Description" CONTENT="
+Ecommerce shopping cart framework module for SilverStripe websites. Easy to set up and developer focused.">
+  
+      <link rel="stylesheet" href="stylesheets/styles.css">
+	<link rel="stylesheet" href="stylesheets/pygment_trac.css">
   
   <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #c7e8ff;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #000000;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #381700; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #381700; }
-    h3 { color: #381700; }
-    a { color: #381700; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-    .license{width:100%;height:10em;}
+    .license{width:100%;height:10em;box-sizing: border-box;padding:10px;}
+    .logo{height:20px;}
   </style>
 </head>
 
 <body>
-  <a href="https://github.com/burnbright/silverstripe-shop"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-
-  <div id="container">
-
-    <h1><img src="logo.png"/><a href="https://github.com/burnbright/silverstripe-shop"> SilverStripe Shop</a>
-      <span class="small">ecommerce shopping cart solution</span></h1>
-
+  <div class="wrapper">
+	
+	<header>
+   		<h1><img class="logo" src="logo.png"/><a href="https://github.com/burnbright/silverstripe-shop"> SilverStripe Shop</a></h1>
+    	<p>ecommerce shopping cart solution</p>
+		
+		<p class="view"><a href="https://github.com/burnbright/silverstripe-shop">View the Project on GitHub <small>burnbright/silverstripe-shop</small></a></p>
+		
+		<h2>Download</h2>
+        <ul>
+          <li><a href="https://github.com/burnbright/silverstripe-shop/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/burnbright/silverstripe-shop/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/burnbright/silverstripe-shop">Fork On <strong>GitHub</strong></a></li>
+        </ul>
+        
+         <p>The <a href="https://github.com/downloads/burnbright/silverstripe-shop/shopinstaller-0.8.3.zip">shop installer 0.8.3</a> 
+	    	bundles SilverStripe, the shop module, payment module, and required extras.	    	
+	    </p>
+	</header>
+	<section>
     <div class="description">
-      The SilverStripe Shop module aims to provide developers with a framework for building, and customising ecommerce-based projects.
+      The <code>SilverStripe Shop</code> module aims to provide developers with a framework for building, and customising ecommerce-based projects.
       
       It includes facilities for customers to browse products and place orders, and for administrators to manage products and orders.
     </div>
       
-		<p>A strong focus is being put on enabling developers to create custom online shopping solutions.
+		<p>A strong focus has been put on enabling developers to create custom online shopping solutions.
 		The core has been kept to a minimum, and additional features are provides as 'submodules'.</p>
     	
-    <h2><a href="http://demo.ss-shop.org">Demo</a></h2>
+    <h2><a href="http://demo.ss-shop.org">View Demo Shop</a></h2>
 	
 	<h2>Documentation</h2>
 	
@@ -60,27 +57,7 @@
 			<li><a href="http://api.ss-shop.org">API Docs</a></li>
 		</ul>
 	</p>
-		        <div class="download">
-      <a href="https://github.com/burnbright/silverstripe-shop/zipball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-      <a href="https://github.com/burnbright/silverstripe-shop/tarball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
-    </div>
-	    <h2>Download</h2>
 
-    <p>
-      You can download the source for this project in either
-      <a href="https://github.com/burnbright/silverstripe-shop/zipball/master">zip</a> or
-      <a href="https://github.com/burnbright/silverstripe-shop/tarball/master">tar formats</a>.
-    </p>
-    	    <p>The <a href="https://github.com/downloads/burnbright/silverstripe-shop/shopinstaller-0.8.3.zip">shop installer 0.8.3</a> 
-	    	bundles of SilverStripe, the shop and payment moduels, and required extras.	    	
-	    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/burnbright/silverstripe-shop</pre>
-    </p>
-	
       <h2>Install</h2>
       <p> 
         <ul>
@@ -120,16 +97,16 @@
 					documentation, and submit them as pull requests.</li>
 					<li>Help answer questions in the <a href="http://www.silverstripe.org/e-commerce-module-forum">forum</a>.</li>
 					<li>Participate in development discussion on the <a href="http://groups.google.com/group/silverstripe-ecommerce">mailing list</a>.</li>
-					<li>
-					Put some money towards the project, or a particular feature (contact author first):
-					<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
-						<input type="hidden" name="cmd" value="_s-xclick">
-						<input type="hidden" name="hosted_button_id" value="JWJ56LN45UK52">
-						<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-						<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-					</form>
-					</li>
+					<li>Put some money towards the project, or a particular feature*.</li>
 				</ul>
+				
+				<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+					<input type="hidden" name="cmd" value="_s-xclick">
+					<input type="hidden" name="hosted_button_id" value="JWJ56LN45UK52">
+					<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+					<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+				</form>
+				<p>* You should contact the author before donating towards a particular feature.</p>
 		</p>
     
       <h2>License</h2>
@@ -153,17 +130,24 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
     <div class="footer">
       get the source code on GitHub : <a href="https://github.com/burnbright/silverstripe-shop">burnbright/silverstripe-shop</a>
     </div>
-
+	
+	</section>
+	
+	<footer>
+        <p>This project is maintained by <a href="http://burnbright.net">burnbright</a></p>
+    </footer>
+	
   </div>
 
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-6795755-3");
-pageTracker._trackPageview();
-} catch(err) {}</script>"
+	<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+		try {
+			var pageTracker = _gat._getTracker("UA-6795755-3");
+			pageTracker._trackPageview();
+		} catch(err) {}
+	</script>
 </body>
 </html>
