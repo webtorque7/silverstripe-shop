@@ -1,16 +1,60 @@
-<mockup version="1.0" skin="sketch" measuredW="1330" measuredH="664" mockupW="960" mockupH="572">
+<mockup version="1.0" skin="sketch" measuredW="1108" measuredH="581" mockupW="738" mockupH="489">
   <controls>
-    <control controlID="0" controlTypeID="com.balsamiq.mockups::TabBar" x="382" y="124" w="933" h="525" measuredW="503" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::TabBar" x="382" y="124" w="714" h="442" measuredW="503" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
       <controlProperties>
         <selectedIndex>1</selectedIndex>
         <text>Main%2C%20Pricing%2C%20Variations%2C%20Images%2C%20Shipping%2C%20Categories%2C%20Metadata</text>
       </controlProperties>
     </control>
-    <control controlID="1" controlTypeID="com.balsamiq.mockups::TabBar" x="370" y="92" w="960" h="572" measuredW="323" measuredH="100" zOrder="0" locked="false" isInGroup="-1">
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::TabBar" x="370" y="92" w="738" h="489" measuredW="321" measuredH="100" zOrder="0" locked="false" isInGroup="-1">
       <controlProperties>
         <selectedIndex>0</selectedIndex>
         <text>Content%2C%20Behaviour%2C%20To-do%2C%20Access</text>
       </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::Label" x="400" y="164" w="-1" h="-1" measuredW="108" measuredH="21" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Base%20Selling%20Price</text>
+      </controlProperties>
+    </control>
+    <control controlID="3" controlTypeID="com.balsamiq.mockups::TextInput" x="400" y="189" w="681" h="-1" measuredW="63" measuredH="27" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%24123.45</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::Label" x="400" y="220" w="-1" h="-1" measuredW="164" measuredH="21" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Cost%20Price%20%28before%20markup%29</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::TextInput" x="400" y="243" w="681" h="-1" measuredW="55" measuredH="27" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%2463.10</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Label" x="400" y="276" w="-1" h="-1" measuredW="84" measuredH="21" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Zoned%20Prices</text>
+      </controlProperties>
+    </control>
+    <control controlID="11" controlTypeID="__group__" x="400" y="300" w="679" h="172" measuredW="679" measuredH="172" zOrder="7" locked="false" isInGroup="-1">
+      <groupChildrenDescriptors>
+        <control controlID="0" controlTypeID="com.balsamiq.mockups::DataGrid" x="0" y="0" w="679" h="172" measuredW="192" measuredH="175" zOrder="0" locked="false" isInGroup="11">
+          <controlProperties>
+            <text>Zone%2C%20Price%2C%0ATrans-Tasman%2C%20%24100.30%2C%20x%0AAsia%2C%20%24234.00%2C%20x%0AEurope%2C%20%2469.45%2C%20x%0AEngland%2C%20%2420.50%2C%20x%0A%2C%2C+%0A%7B3%2C2%2C0%7D</text>
+          </controlProperties>
+        </control>
+        <control controlID="1" controlTypeID="com.balsamiq.mockups::ComboBox" x="4" y="142" w="384" h="-1" measuredW="113" measuredH="23" zOrder="1" locked="false" isInGroup="11">
+          <controlProperties>
+            <text>-Choose%20Zone%20-</text>
+          </controlProperties>
+        </control>
+        <control controlID="2" controlTypeID="com.balsamiq.mockups::TextInput" x="401" y="141" w="253" h="-1" measuredW="79" measuredH="27" zOrder="2" locked="false" isInGroup="11">
+          <controlProperties>
+            <text/>
+          </controlProperties>
+        </control>
+      </groupChildrenDescriptors>
     </control>
   </controls>
 </mockup>
