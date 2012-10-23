@@ -1,0 +1,70 @@
+<mockup version="1.0" skin="sketch" measuredW="983" measuredH="365" mockupW="552" mockupH="348">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::TextInput" x="745" y="149" w="199" h="-1" measuredW="79" measuredH="27" zOrder="3" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::TextInput" x="745" y="199" w="207" h="-1" measuredW="79" measuredH="27" zOrder="4" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text/>
+      </controlProperties>
+    </control>
+    <control controlID="2" controlTypeID="com.balsamiq.mockups::RadioButtonGroup" x="464" y="134" w="-1" h="-1" measuredW="127" measuredH="42" zOrder="5" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>%28o%29%20Register%20Account%0A%28%29%20Guest%20Checkout</text>
+      </controlProperties>
+    </control>
+    <control controlID="4" controlTypeID="com.balsamiq.mockups::FieldSet" x="449" y="97" w="263" h="207" measuredW="200" measuredH="170" zOrder="2" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>New%20Customer</text>
+      </controlProperties>
+    </control>
+    <control controlID="5" controlTypeID="com.balsamiq.mockups::FieldSet" x="730" y="97" w="237" h="207" measuredW="200" measuredH="170" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Returning%20Customer</text>
+      </controlProperties>
+    </control>
+    <control controlID="6" controlTypeID="com.balsamiq.mockups::PointyButton" x="875" y="262" w="77" h="-1" measuredW="56" measuredH="27" zOrder="6" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Log%20In</text>
+      </controlProperties>
+    </control>
+    <control controlID="7" controlTypeID="com.balsamiq.mockups::Link" x="745" y="226" w="-1" h="-1" measuredW="120" measuredH="21" zOrder="7" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Forgotten%20Password</text>
+      </controlProperties>
+    </control>
+    <control controlID="8" controlTypeID="com.balsamiq.mockups::Label" x="745" y="181" w="-1" h="-1" measuredW="60" measuredH="21" zOrder="8" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Password</text>
+      </controlProperties>
+    </control>
+    <control controlID="9" controlTypeID="com.balsamiq.mockups::Label" x="745" y="128" w="-1" h="-1" measuredW="107" measuredH="21" zOrder="9" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Username%20/%20Email</text>
+      </controlProperties>
+    </control>
+    <control controlID="10" controlTypeID="com.balsamiq.mockups::PointyButton" x="620" y="261" w="77" h="-1" measuredW="70" measuredH="27" zOrder="10" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Continue</text>
+      </controlProperties>
+    </control>
+    <control controlID="12" controlTypeID="com.balsamiq.mockups::Paragraph" x="464" y="192" w="233" h="55" measuredW="200" measuredH="140" zOrder="11" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Having%20an%20account%20means%20you%20can%20track%20the%20progress%20of%20your%20orders%2C%20shop%20faster%20next%20time%2C%20and%20get%20order%20status%20updates.</text>
+      </controlProperties>
+    </control>
+    <control controlID="13" controlTypeID="com.balsamiq.mockups::SubTitle" x="449" y="34" w="-1" h="-1" measuredW="270" measuredH="33" zOrder="12" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Sign%20In%20/%20Create%20Account</text>
+      </controlProperties>
+    </control>
+    <control controlID="14" controlTypeID="com.balsamiq.mockups::Canvas" x="431" y="17" w="552" h="348" measuredW="100" measuredH="70" zOrder="0" locked="false" isInGroup="-1"/>
+    <control controlID="15" controlTypeID="com.balsamiq.mockups::Button" x="451" y="319" w="-1" h="-1" measuredW="128" measuredH="27" zOrder="13" locked="false" isInGroup="-1">
+      <controlProperties>
+        <text>Continue%20Shopping</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>

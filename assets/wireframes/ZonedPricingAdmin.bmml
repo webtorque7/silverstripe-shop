@@ -1,0 +1,16 @@
+<mockup version="1.0" skin="sketch" measuredW="1330" measuredH="664" mockupW="960" mockupH="572">
+  <controls>
+    <control controlID="0" controlTypeID="com.balsamiq.mockups::TabBar" x="382" y="124" w="933" h="525" measuredW="503" measuredH="100" zOrder="1" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>1</selectedIndex>
+        <text>Main%2C%20Pricing%2C%20Variations%2C%20Images%2C%20Shipping%2C%20Categories%2C%20Metadata</text>
+      </controlProperties>
+    </control>
+    <control controlID="1" controlTypeID="com.balsamiq.mockups::TabBar" x="370" y="92" w="960" h="572" measuredW="323" measuredH="100" zOrder="0" locked="false" isInGroup="-1">
+      <controlProperties>
+        <selectedIndex>0</selectedIndex>
+        <text>Content%2C%20Behaviour%2C%20To-do%2C%20Access</text>
+      </controlProperties>
+    </control>
+  </controls>
+</mockup>
