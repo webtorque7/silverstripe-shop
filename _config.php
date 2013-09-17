@@ -8,7 +8,6 @@ if(!class_exists('Payment'))
 
 //extensions
 SiteConfig::add_extension("ShopConfig");
-Payment::add_extension("ShopPayment");
 Page_Controller::add_extension("ViewableCart");
 ShoppingCart_Controller::add_extension("ViewableCart");
 Member::add_extension('ShopMember');
