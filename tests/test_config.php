@@ -4,7 +4,6 @@
  */
 
 // * * * NON-ECOMMERCE SETTINGS
-Payment::set_site_currency('USD');
 Email::setAdminEmail('test@myshop.com');
 
 //i18n::set_locale('');
@@ -60,9 +59,9 @@ Address::$required_fields = array(
 
 Address::$show_form_hints = true; //show form field hints
 
-ShopPayment::set_supported_methods(array(
-	'Cheque' => 'Cheque'
-));
+// ShopPayment::set_supported_methods(array(
+// 	'Cheque' => 'Cheque'
+// ));
 
 // * * * HELP
 Product::set_global_allow_purchase(true);
