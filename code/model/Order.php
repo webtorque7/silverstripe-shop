@@ -526,9 +526,7 @@ class Order extends DataObject {
 	 * @return string
 	 */
 	function Currency() {
-		if(class_exists('Payment')) {
-			return Payment::site_currency();
-		}
+		return SiteConfig::current_site_config()->Currency;
 	}
 
 	/**

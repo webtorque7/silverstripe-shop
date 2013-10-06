@@ -2,25 +2,29 @@
 
 class ShopConfig extends DataExtension{
 	
-	static $db = array(
-		'AllowedCountries' => 'Text'
+	private static $db = array(
+		'AllowedCountries' => 'Text',
+		'Currency' => 'Varchar(3)',
 	);
 	
-	static $has_one = array(
+	private static $has_one = array(
+		'DefaultProductParent' => 'SiteTree',
 		'TermsPage' => 'SiteTree',
 		"CustomerGroup" => "Group"
 	);
 	
-	static function current(){
+	public static function current(){
 		return SiteConfig::current_site_config();
 	}
 	
-	function updateCMSFields(FieldList $fields) {
+	public function updateCMSFields(FieldList $fields) {
 		$fields->insertBefore($shoptab = new Tab('Shop', 'Shop'), 'Access');
 		$fields->addFieldsToTab("Root.Shop", new TabSet("ShopTabs",
 			$maintab = new Tab("Main",
 				new TreeDropdownField('TermsPageID', _t("ShopConfig.TERMSPAGE",'Terms and Conditions Page'), 'SiteTree'),
-				new TreeDropdownField("CustomerGroupID", _t("ShopConfig.CUSTOMERGROUP","Group to add new customers to"), "Group")
+				new TreeDropdownField("CustomerGroupID", _t("ShopConfig.CUSTOMERGROUP","Group to add new customers to"), "Group"),
+				TextField::create('Currency'),
+				TreeDropdownField::create('DefaultProductParentID', 'Default Product Parent', 'SiteTree')->setDescription('Default page to create products under')
 			),
 			$countriestab = new Tab("Countries",
 				$allowed = new CheckboxSetField('AllowedCountries','Allowed Ordering and Shipping Countries',self::$iso_3166_countryCodes)
@@ -35,7 +39,7 @@ class ShopConfig extends DataExtension{
 	 * @param boolean $prefixisocode - prefix the country code
 	 * @return array
 	 */
-	function getCountriesList($prefixisocode = false){
+	public function getCountriesList($prefixisocode = false){
 		$countries = self::$iso_3166_countryCodes;
 		asort($countries);
 		if($allowed = $this->owner->AllowedCountries){
@@ -55,7 +59,7 @@ class ShopConfig extends DataExtension{
 	 * Convert iso country code to English country name
 	 * @return string - name of country
 	 */
-	static function countryCode2name($code){
+	public static function countryCode2name($code){
 		if(isset(self::$iso_3166_countryCodes[$code])){
 			return self::$iso_3166_countryCodes[$code];
 		}

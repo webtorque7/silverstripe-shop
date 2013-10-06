@@ -40,15 +40,15 @@ class ShopMember extends DataExtension {
 	 * @return Member|null
 	 */
 	static function get_by_identifier($value){
-		$uniqueField = Member::get_unique_identifier_field();
+		$uniqueField = Member::config()->unique_identifier_field;
 		return DataObject::get_one('Member', "\"$uniqueField\" = '{$value}'");
 	}
 	
 	static function create_or_merge($data){
-		if(!isset($data[Member::get_unique_identifier_field()]) || empty($data[Member::get_unique_identifier_field()])){
+		if(!isset($data[Member::config()->unique_identifier_field]) || empty($data[Member::config()->unique_identifier_field])){
 			return false;	
 		}
-		$existingmember = self::get_by_identifier($data[Member::get_unique_identifier_field()]);
+		$existingmember = self::get_by_identifier($data[Member::config()->unique_identifier_field]);
 		if($existingmember && $existingmember->exists()){
 			if(Member::currentUserID() != $existingmember->ID) {
 				return false;
