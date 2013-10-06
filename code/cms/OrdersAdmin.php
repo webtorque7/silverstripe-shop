@@ -6,9 +6,9 @@
  */
 class OrdersAdmin extends ModelAdmin{
 
-	static $url_segment = 'orders';
-	static $menu_title = 'Orders';
-	static $menu_priority = 1;
+	private static $url_segment = 'orders';
+	private static $menu_title = 'Orders';
+	private static $menu_priority = 1;
 
 	public static $managed_models = array(
 		'Order' => array(
@@ -21,8 +21,8 @@ class OrdersAdmin extends ModelAdmin{
 		$params = $this->request->requestVar('q');
 		//TODO update params DateTo, to include the day, ie 23:59:59
 
-		$list = $context->getResults($params)
-			->exclude("Status",Order::$hidden_status); //exclude hidden statuses
+		$list = $context->getResults($params);
+			//->exclude("Status",Config::inst()->get('Order', 'hidden_status')); //exclude hidden statuses
 
 		$this->extend('updateList', $list);
 

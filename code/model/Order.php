@@ -19,7 +19,7 @@ class Order extends DataObject {
  	 * AdminCancelled: Order cancelled by the administrator
  	 * MemberCancelled: Order cancelled by the customer (Member)
  	 */
-	public static $db = array(
+	private static $db = array(
 		'Total' => 'Currency',
 		'Reference' => 'Varchar', //allow for customised order numbering schemes
 		//status
@@ -39,26 +39,26 @@ class Order extends DataObject {
 		'SeparateBillingAddress' => 'Boolean'
 	);
 
-	public static $has_one = array(
+	private static $has_one = array(
 		'Member' => 'Member',
 		'ShippingAddress' => 'Address',
 		'BillingAddress' => 'Address'
 	);
 
-	public static $has_many = array(
+	private static $has_many = array(
 		'Items' => 'OrderItem',
 		'Modifiers' => 'OrderModifier',
 		'OrderStatusLogs' => 'OrderStatusLog',
 		'Payments' => 'Payment'
 	);
-	
-	public static $default_sort = "\"Placed\" DESC, \"Created\" DESC";
-	
-	public static $defaults = array(
+
+	private static $default_sort = "\"Placed\" DESC, \"Created\" DESC";
+
+	private static $defaults = array(
 		'Status' => 'Cart'
 	);
-	
-	public static $casting = array(
+
+	private static $casting = array(
 		'FullBillingAddress' => 'Text',
 		'FullShippingAddress' => 'Text',
 		'Total' => 'Currency',
@@ -68,19 +68,19 @@ class Order extends DataObject {
 		'TotalOutstanding' => 'Currency'
 	);
 
-	public static $singular_name = "Order";
-	public static $plural_name = "Orders";
-	static $admin_template = "Order_admin";
+	private static $singular_name = "Order";
+	private static $plural_name = "Orders";
+	private static $admin_template = "Order_admin";
 
 	/**
 	 * Statuses for orders that have been placed.
 	 */
-	static $placed_status = array('Paid','Unpaid', 'Processing', 'Sent', 'Complete', 'MemberCancelled', 'AdminCancelled');
+	private static $placed_status = array('Paid','Unpaid', 'Processing', 'Sent', 'Complete', 'MemberCancelled', 'AdminCancelled');
 
 	/**
 	 * Statuses that shouldn't show in user account.
 	 */
-	static $hidden_status = array('Cart','Query');
+	private static $hidden_status = array('Cart','Query');
 
 	/**
 	 * Flag to determine whether the user can cancel
@@ -136,7 +136,7 @@ class Order extends DataObject {
 	 *
 	 * @var array
 	 */
-	public static $table_overview_fields = array(
+	private static $table_overview_fields = array(
 		'Reference' => 'Order No',
 		'Placed' => 'Date',
 		'FirstName' => 'First Name',
@@ -145,7 +145,7 @@ class Order extends DataObject {
 		'Status' => 'Status'
 	);
 
-	public static $summary_fields = array(
+	private static $summary_fields = array(
 		'Reference' => 'Order No',
 		'Placed' => 'Date',
 		'Name' => 'Customer',
@@ -154,7 +154,7 @@ class Order extends DataObject {
 		'Status' => 'Status'
 	);
 
-	public static $searchable_fields = array(
+	private static $searchable_fields = array(
 		'Reference' => array(),
 		'FirstName' => array(
 			'title' => 'Customer Name',

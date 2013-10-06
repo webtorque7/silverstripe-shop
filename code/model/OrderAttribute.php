@@ -9,15 +9,15 @@
  */
 class OrderAttribute extends DataObject {
 
-	public static $db = array(
+	private static $db = array(
 		'CalculatedTotal' => 'Currency'
 	);
 
-	public static $has_one = array(
+	private static $has_one = array(
 		'Order' => 'Order'
 	);
 
-	public static $casting = array(
+	private static $casting = array(
 		'TableTitle' => 'Text',
 		'CartTitle' => 'Text'
 	);
@@ -30,7 +30,7 @@ class OrderAttribute extends DataObject {
 		return false;
 	}
 
-	function isLive(){
+	public function isLive(){
 		return (!$this->isInDB() || $this->Order()->IsCart());
 	}
 
@@ -40,15 +40,15 @@ class OrderAttribute extends DataObject {
 	 *
 	 * @return string
 	 */
-	function TableTitle() {
+	public function TableTitle() {
 		return 'Attribute';
 	}
-	
-	function CartTitle() {
+
+	public function CartTitle() {
 		return $this->TableTitle();
 	}
-	
-	function ShowInTable() {
+
+	public function ShowInTable() {
 		return true;
 	}
 

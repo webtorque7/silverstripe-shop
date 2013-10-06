@@ -153,7 +153,7 @@ class Checkout{
 		if(!Checkout::$member_creation_enabled){
 			return $this->error(_t("Checkout.MEMBERSHIPSNOTALLOWED","Creating new memberships is not allowed"));
 		}
-		$idfield = Member::get_unique_identifier_field();
+		$idfield = Member::config()->unique_identifier_field;
 		if(!isset($data[$idfield]) || empty( $data[$idfield])){
 			return $this->error(sprintf(_t("Checkout.IDFIELDNOTFOUND","Required field not found: %s"),$idfield));
 		}
