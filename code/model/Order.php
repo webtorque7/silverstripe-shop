@@ -80,7 +80,7 @@ class Order extends DataObject {
 	/**
 	 * Statuses that shouldn't show in user account.
 	 */
-	private static $hidden_status = array('Cart','Query');
+	public static $hidden_status = array('Cart','Query');
 
 	/**
 	 * Flag to determine whether the user can cancel
@@ -332,13 +332,15 @@ class Order extends DataObject {
 		$modifiertotal = 0;
 		$sort = 1;
 		$existingmodifiers = $this->Modifiers();
-		
+		$modifiers = $this->config()->get('modifiers');
+
 		if($this->IsCart()){
 			//check if modifiers are even in use
-			if(!self::$modifiers || !is_array(self::$modifiers) || count(self::$modifiers) <= 0){
+			if(!$modifiers || !is_array($modifiers) || count($modifiers) <= 0){
 				return $this->Total = $runningtotal;
 			}
-			foreach(self::$modifiers as $ClassName){
+
+			foreach($modifiers as $ClassName){
 				if($modifier = $this->getModifier($ClassName)){
 					$modifier->Sort = $sort;
 					$runningtotal = $modifier->modify($runningtotal);
@@ -352,7 +354,7 @@ class Order extends DataObject {
 				//TODO: it may be better to store/run this as a build task - remove all invalid modifiers from carts
 			if($existingmodifiers){
 				foreach($existingmodifiers as $modifier){
-					if(!in_array($modifier->ClassName,self::$modifiers)){
+					if(!in_array($modifier->ClassName,$modifiers)){
 						$modifier->delete();
 						$modifier->destroy();
 						return null;
