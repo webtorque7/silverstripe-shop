@@ -74,14 +74,17 @@ class Address extends DataObject{
 			$countryfield = new DropdownField($nameprefix."Country",_t('Address.COUNTRY','Country'), $countries);
 			$countryfield->setHasEmptyDefault(true);
 		}
+		else {
+			$countryfield->setValue($countries[0]);
+		}
 		$fields = new FieldList(
-			$countryfield,
+			$phonefield = new TextField($nameprefix.'Phone', _t('Address.PHONE','Phone Number')),
 			$addressfield = new TextField($nameprefix.'Address', _t('Address.ADDRESS','Address')),
 			$address2field = new TextField($nameprefix.'AddressLine2', _t('Address.ADDRESSLINE2','&nbsp;')),
 			$cityfield = new TextField($nameprefix.'City', _t('Address.CITY','City')),
 			$statefield = new TextField($nameprefix.'State', _t('Address.STATE','State')),
 			$postcodefield = new TextField($nameprefix.'PostalCode', _t('Address.POSTALCODE','Postal Code')),
-			$phonefield = new TextField($nameprefix.'Phone', _t('Address.PHONE','Phone Number'))
+			$countryfield
 		);		
 		if(self::$show_form_hints){
 			$addressfield->setRightTitle(_t("Address.ADDRESSHINT","street / thoroughfare number, name, and type or P.O. Box"));
