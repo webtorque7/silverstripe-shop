@@ -7,15 +7,15 @@
  */
 class OrderManipulation extends Extension{
 
-	static $allow_cancelling = false;
-	static $allow_paying = false;
+	private static $allow_cancelling = false;
+	private static $allow_paying = false;
 
-	static $session_variable = "OrderManipulation.historicalorders";
-	
-	static function set_allow_cancelling($cancel = true){self::$allow_cancelling = $cancel;}
-	static function set_allow_paying($pay = true){self::$allow_paying = $pay;}
+	private static $session_variable = "OrderManipulation.historicalorders";
 
-	static $allowed_actions = array(
+	public static function set_allow_cancelling($cancel = true){self::$allow_cancelling = $cancel;}
+	public static function set_allow_paying($pay = true){self::$allow_paying = $pay;}
+
+	private static $allowed_actions = array(
 		'ActionsForm',
 		'order'
 	);
@@ -23,7 +23,7 @@ class OrderManipulation extends Extension{
 	/**
 	 * Add an order to the session-stored history of orders.
 	 */
-	static function add_session_order(Order $order){
+	public static function add_session_order(Order $order){
 		$history = self::get_session_order_ids();
 		if(!is_array($history)){
 			$history = array();
@@ -35,15 +35,15 @@ class OrderManipulation extends Extension{
 	/**
 	 * Get historical orders for current session.
 	 */
-	static function get_session_order_ids(){
+	public static function get_session_order_ids(){
 		$history = Session::get(self::$session_variable);
 		if(!is_array($history)){
 			$history = null;
 		}
 		return $history;
 	}
-	
-	static function clear_session_order_ids(){
+
+	public static function clear_session_order_ids(){
 		Session::set(self::$session_variable,null);
 		Session::clear(self::$session_variable);
 	}
@@ -95,7 +95,7 @@ class OrderManipulation extends Extension{
 	/**
 	 * Return all past orders for current member / session.
 	 */
-	function PastOrders($extrafilter = null){
+	public function PastOrders($extrafilter = null){
 		$statusFilter = "\"Order\".\"Status\" IN ('" . implode("','", Order::$placed_status) . "')";
 		$statusFilter .= " AND \"Order\".\"Status\" NOT IN('". implode("','", Order::$hidden_status) ."')";
 		$statusFilter .= ($extrafilter) ? " AND $extrafilter" : "";
@@ -108,7 +108,7 @@ class OrderManipulation extends Extension{
 	 *
 	 * @return array of template variables
 	 */
-	function order(SS_HTTPRequest $request) {	
+	public function order(SS_HTTPRequest $request) {
 		$message = null;
 		$order = $this->orderfromid();
 		if(!$order) {
@@ -122,9 +122,9 @@ class OrderManipulation extends Extension{
 	
 	/**
 	 * Build a form for cancelling, or retrying payment for a placed order.
-	 * @return Form
+	 * @return Form|null
 	 */
-	function ActionsForm(){
+	public function ActionsForm(){
 		if($order = $this->orderfromid()){
 			$form = new OrderActionsForm($this->owner, "ActionsForm",$order);
 			$form->extend('updateActionsForm',$order);
@@ -135,12 +135,12 @@ class OrderManipulation extends Extension{
 
 	protected $sessionmessage, $sessionmessagetype = null;
 
-	function setSessionMessage($message = "success",$type = "good"){
+	public function setSessionMessage($message = "success",$type = "good"){
 		Session::set('OrderManipulation.Message',$message);
 		Session::set('OrderManipulation.MessageType',$type);
 	}
 
-	function SessionMessage(){
+	public function SessionMessage(){
 		if($message = Session::get("OrderManipulation.Message")){
 			$this->sessionmessage = $message;
 			Session::clear("OrderManipulation.Message");
@@ -148,7 +148,7 @@ class OrderManipulation extends Extension{
 		return $this->sessionmessage;
 	}
 
-	function SessionMessageType(){
+	public function SessionMessageType(){
 		if($type = Session::get("OrderManipulation.MessageType")){
 			$this->sessionmessagetype = $type;
 			Session::clear("OrderManipulation.MessageType");
