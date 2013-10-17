@@ -356,20 +356,13 @@ class ShoppingCart_Controller extends Controller{
 		return "";
 	}
 	
-	static function direct($status = true){
-		if(Director::is_ajax()){
-			return $status;
-		}
-		if(self::$direct_to_cart_page && $cartlink = CartPage::find_link()){
-			Controller::curr()->redirect($cartlink);
-			return;
-		}else{
-			Controller::curr()->redirectBack();
-			return;
-		}
+	public static function direct($status = true){
+		$redirectUrl = self::$direct_to_cart_page && ($cartlink = CartPage::find_link()) ? $cartlink : Page_Controller::get_back_url();
+
+		return Page_Controller::do_redirect($redirectUrl);
 	}
 	
-	function init(){
+	public function init(){
 		parent::init();
 		$this->cart = ShoppingCart::singleton();
 	}
