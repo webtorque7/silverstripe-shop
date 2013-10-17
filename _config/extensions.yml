@@ -1,5 +1,4 @@
 Name: shopextensions
-After: '#mysiteextensions'
 ---
 SiteConfig:
   extensions:
