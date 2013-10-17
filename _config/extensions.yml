@@ -1,5 +1,6 @@
-Name: ShopExtensions
-Before: MysiteExtensions
+Name: shopextensions
+After: '#mysiteextensions'
+---
 SiteConfig:
   extensions:
     - ShopConfig
