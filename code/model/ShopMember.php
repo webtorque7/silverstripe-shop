@@ -6,9 +6,9 @@
  */
 class ShopMember extends DataExtension {
 
-	static $login_joins_cart = false;
-	static function associate_to_current_order($join = true){self::$login_joins_cart = $join;}
-	static function get_associate_to_current_order(){ return self::$login_joins_cart; }
+	private static $login_joins_cart = false;
+        public static function associate_to_current_order($join = true){self::$login_joins_cart = $join;}
+        public static function get_associate_to_current_order(){ return Config::inst()->get('ShopMember', 'login_joins_cart'); }
 	
 	static $has_many = array(
 		'AddressBook' => 'Address'
@@ -87,7 +87,7 @@ class ShopMember extends DataExtension {
 	 * if there is one, and if configuration is set to do so.
 	 */
 	function memberLoggedIn(){
-		if(self::$login_joins_cart && $order = ShoppingCart::singleton()->current()){
+		if(Config::inst()->get('ShopMember', 'login_joins_cart') && $order = ShoppingCart::singleton()->current()){
 			$order->MemberID = $this->owner->ID;
 			$order->write();
 		}
