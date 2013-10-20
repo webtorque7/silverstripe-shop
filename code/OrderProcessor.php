@@ -225,7 +225,7 @@ class OrderProcessor{
                 $adminEmail =  Config::inst()->get('Email', 'admin_email');
 		$from = self::$email_from ? self::$email_from : $adminEmail;
 		$to = $this->order->getLatestEmail();
-		$subject = sprintf(_t("Order.EMAILSUBJECT", Config::inst()->get('OrderProcessor', 'receipt_subject')) ,$this->order->Reference);
+		$subject = sprintf(_t("Order.EMAILSUBJECT", Config::inst()->get('Order', 'receipt_subject')) ,$this->order->Reference);
 		$purchaseCompleteMessage = DataObject::get_one('CheckoutPage')->PurchaseComplete;
 		$email = new $emailClass();
 		$email->setFrom($from);
