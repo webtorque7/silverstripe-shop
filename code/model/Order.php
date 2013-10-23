@@ -554,9 +554,10 @@ class Order extends DataObject {
 	 * Get shipping address, or member default shipping address.
 	 */
 	function getShippingAddress(){
-		if($address = $this->ShippingAddress()){
+                $address = $this->ShippingAddress();
+		if($address && $address->exists()){
 			return $address;
-		}elseif($this->Member() && $address = $this->Member()->DefaultShippingAddress()){
+		}elseif($this->Member() && ($address = $this->Member()->DefaultShippingAddress()) && $address->exists()){
 			return $address;
 		}
 		return null;
