@@ -270,6 +270,9 @@ class OrderProcessor{
 
 		$purchasePendingMessage = $config->PurchasePendingMessage;
 
+//		Debug::dump($purchasePendingMessage);
+//		die('here');
+
 		$email->setFrom($from);
 		$email->setTo($to);
 		$email->setSubject($subject);

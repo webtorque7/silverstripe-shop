@@ -25,5 +25,5 @@ class Order_StatusEmail extends Email {
  */
 class Order_InvoiceEmail extends Email {
 
-	protected $ss_template = 'Order_InvoiceEmail'; 
+	protected $ss_template = 'Order_InvoiceEmail';
 }
