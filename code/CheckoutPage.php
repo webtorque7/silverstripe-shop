@@ -29,12 +29,9 @@
 class CheckoutPage extends Page {
 
 	public static $db = array(
-		'PurchaseComplete' => 'HTMLText',
-		'ChequeMessage' => 'HTMLText',
 		'AlreadyCompletedMessage' => 'HTMLText',
 		'NonExistingOrderMessage' => 'HTMLText',
 		'MustLoginToCheckoutMessage' => 'HTMLText',
-
 		'CheckoutFinishMessage' => 'HTMLText'
 	);
 
@@ -79,8 +76,6 @@ class CheckoutPage extends Page {
 			new HtmlEditorField('AlreadyCompletedMessage', 'Already Completed - shown when the customer tries to checkout an already completed order', $row = 4),
 			new HtmlEditorField('NonExistingOrderMessage', 'Non-existing Order - shown when the customer tries ', $row = 4),
 			new HtmlEditorField('MustLoginToCheckoutMessage', 'MustLoginToCheckoutMessage', $row = 4),
-			new HtmlEditorField('PurchaseComplete', 'Purchase Complete - included in reciept email, after the customer submits the checkout ', $row = 4),
-			new HtmlEditorField('ChequeMessage', 'Cheque Message - shown when a customer selects a delayed payment option (such as a cheque payment) ', $rows = 4)
 		));
 		return $fields;
 	}

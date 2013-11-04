@@ -18,3 +18,12 @@ class Order_StatusEmail extends Email {
 	protected $ss_template = 'Order_StatusEmail';
 
 }
+
+/**
+ * This class handles the receipt email which gets sent once an order is made.
+ * You can call it by issuing sendReceipt() in the Order class.
+ */
+class Order_InvoiceEmail extends Email {
+
+	protected $ss_template = 'Order_InvoiceEmail';
+}

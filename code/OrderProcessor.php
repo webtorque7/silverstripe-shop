@@ -222,11 +222,14 @@ class OrderProcessor{
 	* @param $copyToAdmin - true by default, whether it should send a copy to the admin
 	*/
 	function sendEmail($emailClass, $copyToAdmin = true){
-                $adminEmail =  Config::inst()->get('Email', 'admin_email');
+		$adminEmail =  Config::inst()->get('Email', 'admin_email');
 		$from = self::$email_from ? self::$email_from : $adminEmail;
 		$to = $this->order->getLatestEmail();
 		$subject = sprintf(_t("Order.EMAILSUBJECT", Config::inst()->get('Order', 'receipt_subject')) ,$this->order->Reference);
-		$purchaseCompleteMessage = DataObject::get_one('CheckoutPage')->PurchaseComplete;
+
+		$config = SiteConfig::current_site_config();
+
+		$purchaseCompleteMessage = $config->PurchaseCompleteMessage;
 		$email = new $emailClass();
 		$email->setFrom($from);
 		$email->setTo($to);
@@ -237,7 +240,7 @@ class OrderProcessor{
 		$email->populateTemplate(array(
 			'PurchaseCompleteMessage' => $purchaseCompleteMessage,
 			'Order' => $this->order,
-                        'SiteConfig' => SiteConfig::current_site_config()
+			'SiteConfig' => $config
 		));
 		return $email->send();
 	}
@@ -250,6 +253,38 @@ class OrderProcessor{
 		$this->sendEmail('Order_ReceiptEmail');
 		$this->order->ReceiptSent = SS_Datetime::now()->Rfc2822();
 		$this->order->write();
+	}
+
+	/**
+	 * Send the receipt of the order by mail.
+	 * Precondition: The order payment has been successful
+	 */
+	function sendInvoice($copyToAdmin = true) {
+		$email = new Order_InvoiceEmail();
+		$adminEmail =  Config::inst()->get('Email', 'admin_email');
+		$from = self::$email_from ? self::$email_from : $adminEmail;
+		$to = $this->order->getLatestEmail();
+		$subject = sprintf(_t("Order.EMAILSUBJECT", Config::inst()->get('Order', 'invoice_purchasepending_subject')) ,$this->order->Reference);
+
+		$config = SiteConfig::current_site_config();
+
+		$purchasePendingMessage = $config->PurchasePendingMessage;
+
+		$email->setFrom($from);
+		$email->setTo($to);
+		$email->setSubject($subject);
+
+		if($copyToAdmin){
+			$email->setBcc($adminEmail);
+		}
+
+		$email->populateTemplate(array(
+			'PurchasePendingMessage' => $purchasePendingMessage,
+			'Order' => $this->order,
+			'SiteConfig' => $config
+		));
+
+		return $email->send();
 	}
 
 	/**
