@@ -237,7 +237,7 @@ class OrderProcessor{
 		$email->setTo($to);
 		$email->setSubject($subject);
 		if($copyToAdmin){
-			$email->setBcc($adminEmail);
+			$email->setBcc($config->ShopEmailTo);
 		}
 		$email->populateTemplate(array(
 			'PurchaseCompleteMessage' => $purchaseCompleteMessage,
@@ -262,9 +262,11 @@ class OrderProcessor{
 	 * Precondition: The order payment has been successful
 	 */
 	function sendInvoice($copyToAdmin = true) {
+                $config = SiteConfig::current_site_config();
+
 		$email = new Order_InvoiceEmail();
 		$adminEmail =  Config::inst()->get('Email', 'admin_email');
-		$from = self::$email_from ? self::$email_from : $adminEmail;
+                $from = self::$email_from ? self::$email_from : $config->SiteEmailFrom;
 		$to = $this->order->getLatestEmail();
 		$subject = sprintf(_t("Order.EMAILSUBJECT", Config::inst()->get('Order', 'invoice_purchasepending_subject')) ,$this->order->Reference);
 
@@ -280,7 +282,7 @@ class OrderProcessor{
 		$email->setSubject($subject);
 
 		if($copyToAdmin){
-			$email->setBcc($adminEmail);
+                        $email->setBcc($config->ShopEmailTo);
 		}
 
 		$email->populateTemplate(array(
