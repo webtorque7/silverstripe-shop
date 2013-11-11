@@ -67,6 +67,9 @@ class ShopPayment extends DataExtension {
 		if($this->owner->Status == 'Success' && $order = $this->owner->Order()) {
 			OrderProcessor::create($order)->completePayment();
 		}
+                else if ($this->owner->Status == 'Incomplete' && $order = $this->owner->Order()) {
+                        OrderProcessor::create($order)->incompletePayment();
+                }
 	}
 
 	public function redirectToOrder() {
