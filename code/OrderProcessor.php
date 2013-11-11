@@ -222,12 +222,14 @@ class OrderProcessor{
 	* @param $copyToAdmin - true by default, whether it should send a copy to the admin
 	*/
 	function sendEmail($emailClass, $copyToAdmin = true){
+                $config = SiteConfig::current_site_config();
+
 		$adminEmail =  Config::inst()->get('Email', 'admin_email');
-		$from = self::$email_from ? self::$email_from : $adminEmail;
+		$from = self::$email_from ? self::$email_from : $config->SiteEmailFrom;
 		$to = $this->order->getLatestEmail();
 		$subject = sprintf(_t("Order.EMAILSUBJECT", Config::inst()->get('Order', 'receipt_subject')) ,$this->order->Reference);
 
-		$config = SiteConfig::current_site_config();
+
 
 		$purchaseCompleteMessage = $config->PurchaseCompleteMessage;
 		$email = new $emailClass();
