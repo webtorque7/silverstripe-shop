@@ -50,8 +50,10 @@ class FlatTaxModifier extends TaxModifier
 
        public function TableTitle(){
                 $title =  parent::TableTitle();
-                if($this->Rate)
-                        $title = $this->config()->name . " ".sprintf(_t("TaxModifier.ATRATE","@ %s"),number_format($this->Rate * 100, 2)."%");
+                if($this->Rate) {
+                        $title = $this->config()->name . " @ " .  number_format($this->Rate * 100, 2). "%";
+                        if (!$this->config()->exclusive) $title .= ' (inclusive)';
+                }
                 return $title;
         }
 
