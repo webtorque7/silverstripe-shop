@@ -49,7 +49,7 @@ class OrderModifier extends OrderAttribute {
 	private static $plural_name = "Modifiers";
 	function i18n_plural_name() { return _t("OrderModifier.PLURAL", self::$plural_name); }
 
-	private static $default_sort = "\"Sort\" ASC, \"Created\" ASC";
+	//private static $default_sort = "\"Sort\" ASC, \"Created\" ASC";
 	
 	/**
 	* Specifies whether this modifier is always required in an order.
