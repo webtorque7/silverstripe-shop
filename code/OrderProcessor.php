@@ -213,7 +213,25 @@ class OrderProcessor{
 				$this->order->extend('onPaid'); //all payment is settled
 			}
 		}
-	}	
+	}
+
+        /**
+         * Complete payment processing
+         *    - send receipt
+         * 	- update order status accordingling
+         * 	- fire event hooks
+         */
+        function incompletePayment(){
+                if($this->order->Status != 'Paid'){
+                        if (!$this->order->InvoiceSent) {
+                                $this->order->extend('onPayment');
+                                if ($this->sendInvoice()) {
+                                        $this->order->ReceiptSent = SS_Datetime::now()->Rfc2822();
+                                        $this->order->write();
+                                }
+                        }
+                }
+        }
 
 	/**
 	* Send a mail of the order to the client (and another to the admin).
