@@ -91,7 +91,7 @@ class Address extends DataObject{
 			$cityfield->setRightTitle(_t("Address.CITYHINT","or suburb, county, district"));
 			$statefield->setRightTitle(_t("Address.STATEHINT","or province, territory, island"));
 		}
-		$this->extend('updateFormFields',$fields,$nameprefix);
+		$this->extend('updateFormFields',$fields,$nameprefix); 
 		return $fields;
 	}
 	
