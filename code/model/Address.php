@@ -71,8 +71,7 @@ class Address extends DataObject{
 		$countries = SiteConfig::current_site_config()->getCountriesList();
 		$countryfield = new ReadonlyField($nameprefix."Country",_t('Address.COUNTRY','Country'));
 		if(count($countries) > 1){
-			$countryfield = new DropdownField($nameprefix."Country",_t('Address.COUNTRY','Country'), $countries);
-			$countryfield->setHasEmptyDefault(true);
+			$countryfield = new DropdownField($nameprefix."Country",_t('Address.COUNTRY','Country'), $countries, 'NZ');
 		}
 		else {
 			$countryfield->setValue($countries[0]);
