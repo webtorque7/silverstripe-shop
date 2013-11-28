@@ -257,16 +257,10 @@ class OrderProcessor{
 		}
 
 		$email->populateTemplate(array(
-			'PurchaseCompleteMessage' => '',
+			'PurchaseCompleteMessage' => $purchaseCompleteMessage,
 			'Order' => $this->order,
 			'SiteConfig' => $config
 		));
-
-//		$email->populateTemplate(array(
-//			'PurchaseCompleteMessage' => $purchaseCompleteMessage,
-//			'Order' => $this->order,
-//			'SiteConfig' => $config
-//		));
 
 		return $email->send();
 	}
