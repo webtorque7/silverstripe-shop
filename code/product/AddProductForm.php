@@ -37,7 +37,7 @@ class AddProductForm extends Form {
 			$fields->push(new NumericField('Quantity','Quantity', 1));
 		}
 		$actions = new FieldList(
-			new FormAction('addtocart',_t("AddProductForm.ADDTOCART",'Add to Cart'))
+			new FormAction('addtocart',_t("AddProductForm.ADDTOCART",'Add to basket'))
 		);
 
 		$validator = new RequiredFields(array(

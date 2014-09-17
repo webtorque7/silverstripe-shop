@@ -20,7 +20,7 @@
 			<% if canPurchase %>
 			<div class="add">
 				<a href="$addLink" title="<% sprintf(_t("ADD","Add &quot;%s&quot; to your cart"),$Title) %>">
-					<% _t("ADDLINK","Add to Cart") %>
+					<% _t("ADDLINK","Add to Basket") %>
 				</a>
 			</div>
 			<% end_if %>
