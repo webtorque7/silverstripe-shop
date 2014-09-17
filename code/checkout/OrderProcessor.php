@@ -269,9 +269,16 @@ class OrderProcessor{
 		if($copyToAdmin){
 			$email->setBcc(Email::config()->admin_email);
 		}
+
+		$pickupText = '';
+		if($this->order->orderPickup()->ShippingType == 'pickup'){
+			$pickupText = SiteConfig::current_site_config()->PickupConfirmationMessage;
+		}
+
 		$email->populateTemplate(array(
 			'PurchaseCompleteMessage' => $completemessage,
 			'Order' => $this->order,
+			'PickupText' => $pickupText,
 			'BaseURL' => Director::absoluteBaseURL()
 		));
 		return $email->send();
