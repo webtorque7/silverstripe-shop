@@ -8,6 +8,9 @@
   */
 class ProductCategory extends Page {
 
+        private static $db = array(
+                'HideAsPromo' => 'Boolean'
+        );
 	private static $belongs_many_many = array(
 		'Products' => 'Product'
 	);
@@ -27,6 +30,10 @@ class ProductCategory extends Page {
 		//'Featured' => 'Featured',
 		//'Weight' => 'Weight'
 	);
+
+        private static $defaults = array(
+                'HideAsPromo' => '0'
+        );
 
 	/**
 	 * Retrieve a set of products, based on the given parameters. Checks get query for sorting and pagination.
@@ -53,6 +60,13 @@ class ProductCategory extends Page {
 
 		return $products;
 	}
+
+
+        public function getCMSFields() {
+                $fields = parent::getCMSFields();
+                $fields->addFieldToTab('Root.PageOptions', CheckboxField::create('HideAsPromo', 'Hide as promo in parent page'));
+                return $fields;
+        }
 
 	/**
 	 * Loop down each level of children to get all ids.
