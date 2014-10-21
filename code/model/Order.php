@@ -368,7 +368,7 @@ class Order extends DataObject {
 	public function getShippingAddress() {
 		if($address = $this->ShippingAddress()){
 			return $address;
-		}elseif($this->Member() && $address = $this->Member()->DefaultShippingAddress()){
+		}elseif($this->Member() && $address = $this->Member()->FindShippingAddress()){
 			return $address;
 		}
 		return null;
