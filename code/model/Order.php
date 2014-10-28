@@ -69,8 +69,11 @@ class Order extends DataObject {
 	private static $summary_fields = array(
 		'Reference' => 'Order No',
 		'Placed' => 'Date',
-		'Name' => 'Customer',
-		'LatestEmail' => 'Email',
+                'Name' => 'Customer Name',
+                'OrderType' => 'Order Type',
+                'MemberTypeName' => 'Member Type',
+                'QuarterlyBottlesAmount' => 'Quarterly Bottles',
+		'LatestEmail' => 'Customer Email',
 		'Total' => 'Total',
 		'Status' => 'Status'
 	);
@@ -86,6 +89,10 @@ class Order extends DataObject {
 		'Status' => array(
 			'filter' => 'ExactMatchFilter',
 			'field' => 'CheckboxSetField'
+		),
+		'OrderType' => array(
+			'filter' => 'ExactMatchFilter',
+			'field' => 'CheckboxSetField'
 		)
 	);
 
@@ -99,6 +106,13 @@ class Order extends DataObject {
 	 */
 	private static $placed_status = array(
 		'Paid', 'Unpaid', 'Processing', 'Sent', 'Complete', 'MemberCancelled', 'AdminCancelled'
+	);
+
+	/**
+	 * Order Types of orders.
+	 */
+	private static $order_type = array(
+		'Wine Club', 'Shop'
 	);
 
 	/**
@@ -138,6 +152,10 @@ class Order extends DataObject {
 		return singleton('Order')->dbObject('Status')->enumValues(false);
 	}
 
+	public static function get_order_type_options() {
+		return singleton('Order')->dbObject('OrderType')->enumValues(false);
+	}
+
 	/**
 	 * Create CMS fields for cms viewing and editing orders
 	 */
@@ -169,6 +187,8 @@ class Order extends DataObject {
 		$fields = $context->getFields();
 		$fields->fieldByName('Status')
 			->setSource(array_combine(self::config()->placed_status, self::config()->placed_status));
+		$fields->fieldByName('OrderType')
+			->setSource(array_combine(self::config()->order_type, self::config()->order_type));
 		//add date range filtering
 		$fields->insertBefore(DateField::create("DateFrom", "Date from")
 			->setConfig('showcalendar', true), 'Status');
@@ -496,5 +516,45 @@ class Order extends DataObject {
 
 		return $val;
 	}
+
+        //String functions used to fetch string format for the CSV Export of Orders Admin
+        public function ProductsBought(){
+                $fullString = "| ";
+                if ($items = $this->owner->Items()){
+                        foreach ($items as $item){
+                                $product = $item->Product();
+                                $newItemString = $item->Quantity . 'x ' . $product->Title . " |" ;
+                                $fullString .= $newItemString;
+                        }
+                }
+                return $fullString;
+        }
+
+        public function FullShippingAddress(){
+                $address = $this->getShippingAddress();
+                return $address->Address .', '. $address->City .', '. $address->Country;
+        }
+
+        public function OrderShippingType(){
+                return ucfirst($this->getModifier('ShippingMatrixModifier')->ShippingType);
+        }
+
+        public function FormattedDate(){
+                return date('l d F Y, h:iA', strtotime($this->Placed));
+        }
+
+        public function MemberTypeName(){
+                $member = Member::get()->byID($this->owner->MemberID);
+                if (!empty($member->MemberTypeID)){
+                        return  MemberType::get()->byID($member->MemberTypeID)->MemberTypeName;
+                }
+        }
+
+        public function QuarterlyBottlesAmount(){
+                $member = Member::get()->byID($this->owner->MemberID);
+                if (!empty($member->QuarterlyBottles)){
+                        return  $member->QuarterlyBottles;
+                }
+        }
 
 }
