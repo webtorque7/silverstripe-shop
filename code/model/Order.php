@@ -69,7 +69,9 @@ class Order extends DataObject {
 	private static $summary_fields = array(
 		'Reference' => 'Order No',
 		'Placed' => 'Date',
-                'Name' => 'Customer Name',
+                'FirstName' => 'First Name',
+                'Surname' => 'Surname',
+                'OrderShippingType' => 'Shipping Type',
                 'OrderType' => 'Order Type',
                 'MemberTypeName' => 'Member Type',
                 'QuarterlyBottlesAmount' => 'Quarterly Bottles',
@@ -81,7 +83,10 @@ class Order extends DataObject {
 	private static $searchable_fields = array(
 		'Reference' => array(),
 		'FirstName' => array(
-			'title' => 'Customer Name',
+			'title' => 'First Name',
+		),
+		'Surname' => array(
+			'title' => 'Surname',
 		),
 		'Email' => array(
 			'title' => 'Customer Email',
