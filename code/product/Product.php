@@ -382,6 +382,10 @@ class Product_OrderItem extends OrderItem {
 	 */
 	private static $buyable_relationship = "Product";
 
+	public function canCreate($member = null) {
+		return true;
+	}
+	
 	/**
 	 * Get related product
 	 *  - live version if in cart, or

@@ -17,6 +17,16 @@ class OrdersAdmin extends ModelAdmin{
 		)
 	);
 
+	public function getEditForm($id = null, $fields = null) {
+		$form = parent::getEditForm($id, $fields);
+		$gridFieldName = 'Order';
+		$gridField = $form->Fields()->fieldByName($gridFieldName);
+		if ($gridField) {
+			$gridField->getConfig()->removeComponentsByType('GridFieldAddNewButton');
+		}
+		return $form;
+	}
+
 	public function getList() {
 		$context = $this->getSearchContext();
 		$params = $this->request->requestVar('q');

@@ -154,8 +154,10 @@ class Order extends DataObject {
 		));
 		$this->extend('updateCMSFields', $fields);
 		$payments = $fields->fieldByName("Root.Payments.Payments");
-		$fields->removeByName("Payments");
-		$fields->insertBefore($payments, "Notes");
+		if ($payments) {
+			$fields->removeByName("Payments");
+			$fields->insertBefore($payments, "Notes");
+		}
 
 		return $fields;
 	}
@@ -327,7 +329,7 @@ class Order extends DataObject {
 	 * @return boolean
 	 */
 	public function canCreate($member = null) {
-		return false;
+		return true;
 	}
 
 	/**
