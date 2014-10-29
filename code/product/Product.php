@@ -385,7 +385,20 @@ class Product_OrderItem extends OrderItem {
 	public function canCreate($member = null) {
 		return true;
 	}
-	
+
+	public function getCMSFields(){
+		$fields = parent::getCMSFields();
+		$fields->removeByName('Discount');
+		$fields->removeByName('CouponID');
+		$fields->removeByName('OrderID');
+		$fields->removeByName('GiftNotes');
+		$fields->removeByName('UnitPrice');
+		$fields->removeByName('ShippingIssue');
+		$fields->removeByName('CalculatedTotal');
+		$fields->removeByName('ProductVersion');
+		return $fields;
+	}
+
 	/**
 	 * Get related product
 	 *  - live version if in cart, or
