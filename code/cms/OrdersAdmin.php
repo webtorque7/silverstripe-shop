@@ -34,7 +34,7 @@ class OrdersAdmin extends ModelAdmin{
                 $fields = array(
                         'Reference' => 'Reference',
                         'FormattedDate' => 'Placed',
-                        'First Name' => 'First Name',
+                        'FirstName' => 'First Name',
                         'Surname' => 'Surname',
                         'OrderType' => 'Order Type',
                         'OrderShippingType' => 'Shipping Type',
