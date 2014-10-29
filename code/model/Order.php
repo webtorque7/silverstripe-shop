@@ -69,25 +69,33 @@ class Order extends DataObject {
 	private static $summary_fields = array(
 		'Reference' => 'Order No',
 		'Placed' => 'Date',
-		'Name' => 'Customer',
-		'LatestEmail' => 'Email',
+                'OrderType' => 'Order Type',
+                'FirstName' => 'First Name',
+                'Surname' => 'Surname',
+                'OrderShippingType' => 'Shipping Type',
+                'MemberTypeName' => 'Member Type',
+                'QuarterlyBottlesAmount' => 'Quarterly Bottles',
+		'LatestEmail' => 'Customer Email',
 		'Total' => 'Total',
 		'Status' => 'Status'
 	);
 
 	private static $searchable_fields = array(
-		'Reference' => array(),
-		'FirstName' => array(
-			'title' => 'Customer Name',
-		),
-		'Email' => array(
-			'title' => 'Customer Email',
-		),
-		'Status' => array(
-			'filter' => 'ExactMatchFilter',
-			'field' => 'CheckboxSetField'
-		)
-	);
+        'Reference' => array(),
+        'FirstName' => array(
+                'title' => 'First Name',
+        ),
+        'Surname' => array(
+                'title' => 'Surname',
+        ),
+        'Email' => array(
+                'title' => 'Customer Email',
+        ),
+        'Status' => array(
+                'filter' => 'ExactMatchFilter',
+                'field' => 'CheckboxSetField'
+        )
+);
 
 	private static $singular_name = "Order";
 	private static $plural_name = "Orders";
@@ -498,5 +506,6 @@ class Order extends DataObject {
 
 		return $val;
 	}
+
 
 }

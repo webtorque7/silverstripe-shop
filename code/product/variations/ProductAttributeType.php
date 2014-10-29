@@ -54,8 +54,8 @@ class ProductAttributeType extends DataObject{
 		);
 		if($this->isInDB()){
 			$fields->push(GridField::create(
-				"Values","Values",$this->Values(),
-				GridFieldConfig_RecordEditor::create()
+				"Values","Values",$this->SortedValues(),
+				GridFieldConfig_RecordEditor::create()->addComponent(GridFieldOrderableRows::create('Sort'))
 			));
 		}else{
 			$fields->push(LiteralField::create("Values",
@@ -66,6 +66,10 @@ class ProductAttributeType extends DataObject{
 		}
 
 		return $fields;
+	}
+
+	public function SortedValues(){
+		return $this->Values()->sort('SortID', 'ASC');
 	}
 
 	public function addValues(array $values){

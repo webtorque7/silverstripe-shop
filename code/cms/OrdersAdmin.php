@@ -40,4 +40,23 @@ class OrdersAdmin extends ModelAdmin{
 		return $list;
 	}
 
+        public function getExportFields() {
+                $fields = array(
+                        'Reference' => 'Reference',
+                        'FormattedDate' => 'Placed',
+                        'FirstName' => 'First Name',
+                        'Surname' => 'Surname',
+                        'OrderType' => 'Order Type',
+                        'OrderShippingType' => 'Shipping Type',
+                        'MemberTypeName' => 'Member Type',
+                        'QuarterlyBottlesAmount' => 'Quarterly Bottles',
+                        'FullShippingAddress' => 'Shipping Address',
+                        'ProductsBought' => 'Products Purchased',
+                        'LatestEmail' => 'Customer Email',
+                        'Total' => 'Total',
+                        'Status' => 'Status',
+                );
+                return $fields;
+        }
 }
+
