@@ -23,10 +23,8 @@ class FlatTaxModifier extends TaxModifier {
 	 */
 	public function value($incoming) {
 		$this->Rate = self::config()->rate;
-		//inclusive tax requires a different calculation
-		return self::config()->exclusive ?
-			$incoming * $this->Rate :
-			$incoming - round($incoming/(1+$this->Rate), Order::config()->rounding_precision);
+		$this->Amount = self::config()->exclusive ? $incoming * $this->Rate : $incoming - round($incoming/(1+$this->Rate), Order::config()->rounding_precision);
+		$this->write();
+		return $this->Amount;
 	}
-
 }
