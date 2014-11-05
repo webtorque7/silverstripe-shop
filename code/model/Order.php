@@ -73,8 +73,8 @@ class Order extends DataObject {
                 'FirstName' => 'First Name',
                 'Surname' => 'Surname',
                 'OrderShippingType' => 'Shipping Type',
-                'MemberTypeName' => 'Member Type',
-                'QuarterlyBottlesAmount' => 'Quarterly Bottles',
+                'MemberType' => 'Member Type',
+                'QuarterlyBottles' => 'Quarterly Bottles',
 		'LatestEmail' => 'Customer Email',
 		'Total' => 'Total',
 		'Status' => 'Status'
