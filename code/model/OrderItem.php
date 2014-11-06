@@ -103,7 +103,7 @@ class OrderItem extends OrderAttribute {
 	 * Calculates the total for this item.
 	 * Generally called by onBeforeWrite
 	 */
-	protected function calculatetotal() {
+	public function calculatetotal() {
 		$total = $this->UnitPrice() * $this->Quantity;
 		$this->extend('updateTotal', $total);
 		$this->CalculatedTotal = $total;
