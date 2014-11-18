@@ -1,16 +1,15 @@
 <?php
- /**
-  * Product Category provides a way to hierartically categorise products.
-  *
-  * It contains functions for versioning child products
-  *
-  * @package shop
-  */
-class ProductCategory extends Page {
 
-        private static $db = array(
-                'HideAsPromo' => 'Boolean'
-        );
+/**
+ * Product Category provides a way to hierartically categorise products.
+ *
+ * It contains functions for versioning child products
+ *
+ * @package shop
+ */
+class ProductCategory extends Page
+{
+
 	private static $belongs_many_many = array(
 		'Products' => 'Product'
 	);
@@ -31,10 +30,6 @@ class ProductCategory extends Page {
 		//'Weight' => 'Weight'
 	);
 
-        private static $defaults = array(
-                'HideAsPromo' => '0'
-        );
-
 	/**
 	 * Retrieve a set of products, based on the given parameters. Checks get query for sorting and pagination.
 	 *
@@ -42,10 +37,10 @@ class ProductCategory extends Page {
 	 * @param bool $recursive include sub-categories
 	 * @return PaginatedList
 	 */
-	public function ProductsShowable($recursive = true){
+	public function ProductsShowable($recursive = true) {
 		// Figure out the categories to check
 		$groupids = array($this->ID);
-		if(!empty($recursive) && self::config()->include_child_groups) {
+		if (!empty($recursive) && self::config()->include_child_groups) {
 			$groupids += $this->AllChildCategoryIDs();
 		}
 		$products = Product::get()
@@ -54,32 +49,25 @@ class ProductCategory extends Page {
 				'ParentID' => $groupids,
 				'Product_ProductCategories.ProductCategoryID' => $groupids
 			));
-		if (self::config()->must_have_price){
-			$products =  $products->filter("BasePrice:GreaterThan", 0);
+		if (self::config()->must_have_price) {
+			$products = $products->filter("BasePrice:GreaterThan", 0);
 		}
 
 		return $products;
 	}
 
-
-        public function getCMSFields() {
-                $fields = parent::getCMSFields();
-                $fields->addFieldToTab('Root.PageOptions', CheckboxField::create('HideAsPromo', 'Hide as promo in parent page'));
-                return $fields;
-        }
-
 	/**
 	 * Loop down each level of children to get all ids.
 	 */
-	public function AllChildCategoryIDs(){
+	public function AllChildCategoryIDs() {
 		$ids = array($this->ID);
 		$allids = array();
-		do{
+		do {
 			$ids = ProductCategory::get()
 				->filter('ParentID', $ids)
 				->getIDList();
 			$allids += $ids;
-		}while(!empty($ids));
+		} while (!empty($ids));
 
 		return $allids;
 	}
@@ -91,7 +79,7 @@ class ProductCategory extends Page {
 	 */
 	public function ChildCategories($recursive = false) {
 		$ids = array($this->ID);
-		if($recursive){
+		if ($recursive) {
 			$ids += $this->AllChildCategoryIDs();
 		}
 
@@ -103,22 +91,22 @@ class ProductCategory extends Page {
 	 * @return DataList
 	 */
 	public function GroupsMenu() {
-		if($this->Parent() instanceof ProductCategory){
+		if ($this->Parent() instanceof ProductCategory) {
 
 			return $this->Parent()->GroupsMenu();
 		}
 		return ProductCategory::get()
-			->filter("ParentID",$this->ID);
+			->filter("ParentID", $this->ID);
 	}
 
 	/**
 	 * Override the nested title defaults, to show deeper nesting in the CMS.
-	 * @param integer $level     nesting level
-	 * @param string  $separator seperate nesting with this string
+	 * @param integer $level nesting level
+	 * @param string $separator seperate nesting with this string
 	 */
 	public function NestedTitle($level = 10, $separator = " > ", $field = "MenuTitle") {
 		$item = $this;
-		while($item && $level > 0) {
+		while ($item && $level > 0) {
 			$parts[] = $item->{$field};
 			$item = $item->Parent;
 			$level--;
@@ -128,12 +116,13 @@ class ProductCategory extends Page {
 
 }
 
-class ProductCategory_Controller extends Page_Controller {
+class ProductCategory_Controller extends Page_Controller
+{
 
 	/**
 	 * Return the products for this group.
 	 */
-	public function Products($recursive = true){
+	public function Products($recursive = true) {
 		$products = $this->ProductsShowable($recursive);
 		//sort the products
 		$products = $this->getSorter()->sortList($products);
@@ -150,7 +139,7 @@ class ProductCategory_Controller extends Page_Controller {
 	 */
 	public function FeaturedProducts($recursive = true) {
 		return $this->ProductsShowable($recursive)
-			->filter("Featured",true);
+			->filter("Featured", true);
 	}
 
 	/**
@@ -158,15 +147,15 @@ class ProductCategory_Controller extends Page_Controller {
 	 */
 	public function NonFeaturedProducts($recursive = true) {
 		return $this->ProductsShowable($recursive)
-			->filter("Featured",false);
+			->filter("Featured", false);
 	}
 
 	/**
 	 * Sorting controls
 	 * @return ListSorter sorter
 	 */
-	public function getSorter(){
-	 	return new ListSorter($this->request, ProductCategory::config()->sort_options);
+	public function getSorter() {
+		return new ListSorter($this->request, ProductCategory::config()->sort_options);
 	}
 
 }
