@@ -257,9 +257,13 @@ class OrderProcessor{
 	* @param $copyToAdmin - true by default, whether it should send a copy to the admin
 	*/
 	public function sendEmail($emailClass, $copyToAdmin = true) {
+
 		$from = ShopConfig::config()->email_from ? ShopConfig::config()->email_from : Email::config()->admin_email;
 		$to = $this->order->getLatestEmail();
-		$subject = sprintf(_t("Order.EMAILSUBJECT", "Shop Sale Information #%d"), $this->order->Reference);
+
+		$config = MessageConfig::current_message_config();
+		$subject = $this->order->ClassName == 'WineClubOrder' ? $config->CCApprovedEmailSubject : sprintf(_t("Order.EMAILSUBJECT", "Shop Sale Information #%d"), $this->order->Reference);
+
 		$checkoutpage = CheckoutPage::get()->first();
 		$completemessage = $checkoutpage ? $checkoutpage->PurchaseComplete : "";
 		$email = new $emailClass();
@@ -281,6 +285,7 @@ class OrderProcessor{
 			'PickupText' => $pickupText,
 			'BaseURL' => Director::absoluteBaseURL()
 		));
+
 		return $email->send();
 	}
 
@@ -292,6 +297,7 @@ class OrderProcessor{
 		$this->sendEmail('Order_ReceiptEmail');
 		$this->order->ReceiptSent = SS_Datetime::now()->Rfc2822();
 		$this->order->write();
+		exit;
 	}
 
 	/**
