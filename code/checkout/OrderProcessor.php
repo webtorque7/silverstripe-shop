@@ -297,7 +297,6 @@ class OrderProcessor{
 		$this->sendEmail('Order_ReceiptEmail');
 		$this->order->ReceiptSent = SS_Datetime::now()->Rfc2822();
 		$this->order->write();
-		exit;
 	}
 
 	/**
