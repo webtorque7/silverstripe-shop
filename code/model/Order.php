@@ -69,12 +69,8 @@ class Order extends DataObject {
 	private static $summary_fields = array(
 		'Reference' => 'Order No',
 		'Placed' => 'Date',
-                'OrderType' => 'Order Type',
-                'FirstName' => 'First Name',
-                'Surname' => 'Surname',
-                'OrderShippingType' => 'Shipping Type',
-                'MemberType' => 'Member Type',
-                'QuarterlyBottles' => 'Quarterly Bottles',
+        'FirstName' => 'First Name',
+        'Surname' => 'Surname',
 		'LatestEmail' => 'Customer Email',
 		'Total' => 'Total',
 		'Status' => 'Status'

@@ -21,9 +21,9 @@ class OrdersAdmin extends ModelAdmin{
 		$form = parent::getEditForm($id, $fields);
 		$gridFieldName = 'Order';
 		$gridField = $form->Fields()->fieldByName($gridFieldName);
-		if ($gridField) {
-			$gridField->getConfig()->removeComponentsByType('GridFieldAddNewButton');
-		}
+//		if ($gridField) {
+//			$gridField->getConfig()->removeComponentsByType('GridFieldAddNewButton');
+//		}
 		return $form;
 	}
 
