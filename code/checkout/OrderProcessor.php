@@ -262,7 +262,12 @@ class OrderProcessor{
 		$to = $this->order->getLatestEmail();
 
 		$config = MessageConfig::current_message_config();
-		$subject = $this->order->ClassName == 'WineClubOrder' ? $config->CCApprovedEmailSubject : sprintf(_t("Order.EMAILSUBJECT", "Shop Sale Information #%d"), $this->order->Reference);
+		$subject = $this->order->ClassName == 'WineClubOrder'
+			? $config->WineClubEmailReceiptSubject
+			: $config->ShopEmailReceiptSubject;
+
+		//default subject
+		if (!$subject) $subject = sprintf(_t("Order.EMAILSUBJECT", "Shop Sale Information #%d"), $this->order->Reference);
 
 		$checkoutpage = CheckoutPage::get()->first();
 		$completemessage = $checkoutpage ? $checkoutpage->PurchaseComplete : "";
