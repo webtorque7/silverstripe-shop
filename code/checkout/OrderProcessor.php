@@ -158,7 +158,9 @@ class OrderProcessor{
 				$this->order->extend('onPaid'); //all payment is settled
 			}
 			if(!$this->order->ReceiptSent){
+			    if($this->order->ClassName != 'WineClubOrder'){
 				$this->sendReceipt();
+			    }
 			}
 		}
 	}
