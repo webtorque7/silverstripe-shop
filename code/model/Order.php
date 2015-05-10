@@ -500,7 +500,7 @@ class Order extends DataObject {
 	 * @return boolean
 	 */
 	public function canDelete($member = null) {
-		return false;
+		return true;
 	}
 	
 	/**
