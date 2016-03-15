@@ -61,10 +61,11 @@ class Address extends DataObject{
 	public function getCMSFields() {
 		$fields = parent::getCMSFields();
 		$fields->addFieldToTab("Root.Main",
-			$this->getCountryField(), 'State'
+			$this->getCountryField()
 		);
 		$fields->removeByName("MemberID");
-		
+
+		$this->extend('updateCMSFields', $fields);
 		return $fields;
 	}
 
