@@ -18,9 +18,14 @@ class ShopConfig extends DataExtension
 
     private static $email_from;
 
-    public static function current()
+    public function getCurrentConfig()
     {
         return SiteConfig::current_site_config();
+    }
+
+    public static function current()
+    {
+        return Injector::inst('ShopConfig')->getCurrentConfig();
     }
 
     public function updateCMSFields(FieldList $fields)
