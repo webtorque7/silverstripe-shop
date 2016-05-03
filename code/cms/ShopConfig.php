@@ -25,7 +25,7 @@ class ShopConfig extends DataExtension
 
     public static function current()
     {
-        return Injector::inst('ShopConfig')->getCurrentConfig();
+        return Injector::inst()->get('ShopConfig')->getCurrentConfig();
     }
 
     public function updateCMSFields(FieldList $fields)
