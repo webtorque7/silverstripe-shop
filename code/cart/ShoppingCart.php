@@ -11,7 +11,7 @@
  */
 class ShoppingCart
 {
-    private static $cartid_session_name = 'shoppingcartid';
+    public static $cartid_session_name = 'shoppingcartid';
 
     private        $order;
 
