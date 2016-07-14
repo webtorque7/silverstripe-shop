@@ -1,1 +1,12 @@
 .idea
+cms/
+framework/
+listsorter/
+reports/
+siteconfig/
+vendor/
+omnipay/
+sqlquerylist/
+versioned-gridfield/
+
+
