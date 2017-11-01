@@ -530,19 +530,23 @@ class Product_OrderItem extends OrderItem
      */
     public function Product($forcecurrent = false)
     {
-        //TODO: this might need some unit testing to make sure it compliles with comment description
-        //ie use live if in cart (however I see no logic for checking cart status)
-        if ($this->ProductID && $this->ProductVersion && !$forcecurrent) {
-            return Versioned::get_version('Product', $this->ProductID, $this->ProductVersion);
-        } elseif (
-            $this->ProductID
-            && $product = Versioned::get_one_by_stage(
-                "Product",
-                "Live",
-                "\"Product\".\"ID\"  = " . $this->ProductID
-            )
-        ) {
-            return $product;
+//        //TODO: this might need some unit testing to make sure it compliles with comment description
+//        //ie use live if in cart (however I see no logic for checking cart status)
+//        if ($this->ProductID && $this->ProductVersion && !$forcecurrent) {
+//            return Versioned::get_version('Product', $this->ProductID, $this->ProductVersion);
+//        } elseif (
+//            $this->ProductID
+//            && $product = Versioned::get_one_by_stage(
+//                "Product",
+//                "Live",
+//                "\"Product\".\"ID\"  = " . $this->ProductID
+//            )
+//        ) {
+//            return $product;
+//        }
+//        return false;
+        if($this->ProductID > 0){
+            return Product::get()->byID($this->ProductID);
         }
         return false;
     }
